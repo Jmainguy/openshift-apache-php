@@ -1,7 +1,10 @@
 # basic apache container with php on openshift
 ## Build locally with docker, then push to openshift registry
 My payload was wiki.tar.gz which had all my site contents, replace that with your tar
+
 You might also not want to land this index.html, feel free to remove it.
+### Create web project
+```oc new-project web```
 ### Get oc token
 ```oc whoami -t```
 ### Get the url for registry
