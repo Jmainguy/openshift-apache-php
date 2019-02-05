@@ -13,12 +13,13 @@ You might also not want to land this index.html, feel free to remove it.
 ```oc whoami -t```
 ### Get the url for registry
 ```oc get route docker-registry -n default```
+if you get an error, ask your openshift adming for the docker registry url
 ### login to registry with docker
 ```docker login -u jmainguy -p 82pHug7j72tmyqPjTCn157JGXL9QV3as docker-registry-default.apps.example.com``` 
 ### Build image
-```docker build -t=docker-registry-default.apps.example.com/web/example```
+```docker build -t=docker-registry-default.apps.example.com/web/example .```
 ### Push image
-```docker push docker-registry-default.apps.example.com/web/example .```
+```docker push docker-registry-default.apps.example.com/web/example```
 ### Deploy
 ```oc new-app web/example --name=example```
 ### Expose svc and route
