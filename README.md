@@ -19,7 +19,8 @@ if you get an error, ask your openshift adming for the docker registry url
 
 *NOTE:* As a single command
 ```
-echo "$(oc whoami -t)" | docker login -u smingolelli --password-stdin $(oc get route docker-registry -n default --no-headers | awk '{print $2}')
+$ echo "$(oc whoami -t)" | \
+   docker login -u $USER --password-stdin $(oc get route docker-registry -n default --no-headers | awk '{print $2}')
 Login Succeeded
 ```
 
