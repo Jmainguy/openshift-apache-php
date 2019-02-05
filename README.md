@@ -1,4 +1,7 @@
 # basic apache container with php on openshift
+## Requirements
+docker daemon installed, running, and you have access to use
+oc command, https://docs.openshift.com/container-platform/3.11/cli_reference/get_started_cli.html
 ## Build locally with docker, then push to openshift registry
 My payload was payload.tar.gz which had all my site contents, replace that with your tar
 
