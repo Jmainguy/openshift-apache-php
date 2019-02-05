@@ -16,7 +16,7 @@ You might also not want to land this index.html, feel free to remove it.
 ### login to registry with docker
 ```docker login -u jmainguy -p 82pHug7j72tmyqPjTCn157JGXL9QV3as docker-registry-default.apps.example.com``` 
 ### Build image
-```docker build -t=docker-registry-default.apps.example.com/web/example```
+```docker build -t=docker-registry-default.apps.example.com/web/example .```
 ### Push image
 ```docker push docker-registry-default.apps.example.com/web/example .```
 ### Deploy
