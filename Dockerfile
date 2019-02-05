@@ -2,9 +2,7 @@ FROM centos:centos6
 ENV maintainer="Jonathan Mainguy <jon@soh.re>"
 RUN yum install -y epel-release
 RUN yum install -y php-pear httpd php-pdo php-mysql php-mbstring php-snmp php-common php-cli php-ldap php-mcrypt php-gd php-devel php-bcmath php
-RUN mkdir /var/www/html/wiki/
-ADD wiki.tar.gz /var/www/html/wiki/
-ADD index.html /var/www/html/
+ADD payload.tar.gz /var/www/html/
 RUN chgrp -R 0 /var/www/html/ \
     && chmod -R g+rwX /var/www/html/
 RUN chgrp -R 0 /etc \

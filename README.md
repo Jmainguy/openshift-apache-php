@@ -1,6 +1,6 @@
 # basic apache container with php on openshift
 ## Build locally with docker, then push to openshift registry
-My payload was wiki.tar.gz which had all my site contents, replace that with your tar
+My payload was payload.tar.gz which had all my site contents, replace that with your tar
 
 You might also not want to land this index.html, feel free to remove it.
 ### Create web project
@@ -14,7 +14,7 @@ You might also not want to land this index.html, feel free to remove it.
 ### Build image
 ```docker build -t=docker-registry-default.apps.example.com/web/example```
 ### Push image
-```docker push docker-registry-default.apps.example.com/web/example```
+```docker push docker-registry-default.apps.example.com/web/example .```
 ### Deploy
 ```oc new-app web/example --name=example```
 ### Expose svc and route
