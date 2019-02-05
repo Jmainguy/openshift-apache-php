@@ -38,19 +38,25 @@ $ tar ztvf payload.tar.gz
 #### Get the url for registry
 ```oc get route docker-registry -n default```
 
-#### login to registry with docker
+*NOTE:* If you get an error, ask your openshift admin for the docker registry url
+
+### login to registry with docker
 ```docker login -u jmainguy -p 82pHug7j72tmyqPjTCn157JGXL9QV3as docker-registry-default.apps.example.com``` 
 
-#### Build image
+*NOTE:* As a single command:
+```
+$ echo "$(oc whoami -t)" | \
+   docker login -u $USER --password-stdin $(oc get route docker-registry -n default --no-headers | awk '{print $2}')
+Login Succeeded
+```
+
+### Build image
 ```docker build -t=docker-registry-default.apps.example.com/web/example .```
-
-#### Push image
+### Push image
 ```docker push docker-registry-default.apps.example.com/web/example```
-
-#### Deploy
-```oc new-app ${USER}-web/example --name=example```
-
-#### Expose svc and route
+### Deploy
+```oc new-app web/example --name=example```
+### Expose svc and route
 ```oc expose svc/example```
 
 -------------------------------------
