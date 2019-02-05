@@ -1,25 +1,54 @@
-# basic apache container with php on openshift
-## Requirements
+### basic apache container with php on openshift
+
+#### Requirements
 1. docker daemon installed, running, and you have access to use
 2. oc command, https://docs.openshift.com/container-platform/3.11/cli_reference/get_started_cli.html
 3. git
-## Build locally with docker, then push to openshift registry
-My payload was payload.tar.gz which had all my site contents, replace that with your tar
 
-You might also not want to land this index.html, feel free to remove it.
-### Create web project
+#### Build locally with docker, then push to openshift registry
+My payload was payload.tar.gz which had all my site contents. To create your own, for eg:
+```
+$ cat index.html
+<html>
+<body>
+<p>
+hello dockerworld
+</p>
+</body>
+</html>
+```
+
+Then tar it up:
+```
+$ tar zcvf payload.tar.gz index.html
+```
+
+And confirm:
+```
+$ tar ztvf payload.tar.gz
+-rw-r--r--  0 jmainguy staff      57 Feb  5 15:34 index.html
+```
+
+#### Create web project
 ```oc new-project web```
-### Get oc token
+
+#### Get oc token
 ```oc whoami -t```
-### Get the url for registry
+
+#### Get the url for registry
 ```oc get route docker-registry -n default```
-### login to registry with docker
+
+#### login to registry with docker
 ```docker login -u jmainguy -p 82pHug7j72tmyqPjTCn157JGXL9QV3as docker-registry-default.apps.example.com``` 
-### Build image
+
+#### Build image
 ```docker build -t=docker-registry-default.apps.example.com/web/example```
-### Push image
+
+#### Push image
 ```docker push docker-registry-default.apps.example.com/web/example .```
-### Deploy
+
+#### Deploy
 ```oc new-app web/example --name=example```
-### Expose svc and route
+
+#### Expose svc and route
 ```oc expose svc/example```
