@@ -16,6 +16,13 @@ You might also not want to land this index.html, feel free to remove it.
 if you get an error, ask your openshift adming for the docker registry url
 ### login to registry with docker
 ```docker login -u jmainguy -p 82pHug7j72tmyqPjTCn157JGXL9QV3as docker-registry-default.apps.example.com``` 
+
+*NOTE:* As a single command
+```
+echo "$(oc whoami -t)" | docker login -u smingolelli --password-stdin $(oc get route docker-registry -n default --no-headers | awk '{print $2}')
+Login Succeeded
+```
+
 ### Build image
 ```docker build -t=docker-registry-default.apps.example.com/web/example .```
 ### Push image
