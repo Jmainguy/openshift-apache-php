@@ -44,11 +44,20 @@ $ tar ztvf payload.tar.gz
 ```docker login -u jmainguy -p 82pHug7j72tmyqPjTCn157JGXL9QV3as docker-registry-default.apps.example.com``` 
 
 *NOTE:* As a single command:
+
+##### OSX (Docker version 18.x+)
 ```
 $ echo "$(oc whoami -t)" | \
    docker login -u $USER --password-stdin $(oc get route docker-registry -n default --no-headers | awk '{print $2}')
 Login Succeeded
 ```
+
+##### Linux (Docker version 1.13.1 - API version 1.26)
+```
+$ docker login -u $USER -p $(oc whoami -t) $(oc get route docker-registry -n default --no-headers | awk '{print $2}')
+Login Succeeded
+```
+
 
 ### Build image
 ```docker build -t=docker-registry-default.apps.example.com/web/example .```
